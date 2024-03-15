@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask EManual</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-image: url('background1.jpg');
+            background-size: cover;
+            text-align: center;
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            color: #996633; /* Dark brown color */
+        }
+         .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.3); /* Adjust for desired transparency level */
+            padding: 10px;
+            border-radius: 8px;
+            #box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Adjust based on your layout needs */
+            border: none;
+        }
+        /* Style the iframe to take up all available space */
+        iframe {
+		    display: block;
+            width: 90%;
+            height: 90%; 
+            border: none; /* Remove iframe border */
+            transform: scale(0.9); /* Scale iframe to 90% */
+            transform-origin: top; /* Scale from the top */
+            background-color: rgba(255, 255, 255, 0.3); /* Adjust for desired transparency level */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ask EManual</h1>
+        <p>Hello, I am EManual. I remember all your household manuals in all languages</p>
+    </div>
+    <iframe src="https://nsabina--emanual-backend.modal.run/gradio/" allowfullscreen></iframe>
+
+</body>
+</html>
