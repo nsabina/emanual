@@ -14,9 +14,9 @@ image = modal.Image.debian_slim(
     "openai",
     "langchain-openai",
     "faiss-gpu",
-    "pymongo[srv]",
-    "gradio",
-    "langchainhub", force_build=True
+    "pymongo[srv]==3.12",
+    "gradio==3.50.2",
+    "langchainhub"
 )
 
 
@@ -93,7 +93,7 @@ def qanda(query: str, request_id=None) -> str:
 
     pretty_log("running query against Q&A chain")
 
-    llm = ChatOpenAI(model_name="gpt-4-turbo-preview", temperature=0, max_tokens=256)
+    llm = ChatOpenAI(model_name="gpt-4-turbo-preview", temperature=0, max_tokens=300)
     chain = load_qa_with_sources_chain(
         llm,
         chain_type="stuff",
@@ -228,12 +228,13 @@ def fastapi_app():
         fn=chain_qanda,
         inputs=inputs,
         outputs=outputs,
-        title="Ask Emanual",
-        description="I am your friendly helper Emanual. I remember all your household manuals including your car. Also I can speak different languages",
+        #title="Ask Emanual",
+        #description="I am your friendly helper Emanual. I remember all your household manuals including your car. Also I can speak different languages",
         examples=[
             "Is my Samsung TV equipped with Internet security?",
             "How do I clean windshield?",
             "How do I make cappuccino?",
+            "What should you read first for safety in the Infiniti G37 Coupe?",
             "How do you adjust the front seats?",
             "What's the proper way to fasten a seat belt?",
             "How do you install a rear-facing child restraint?",
@@ -261,7 +262,8 @@ def fastapi_app():
             "How can you secure the TV to the wall to prevent it from falling?",
         ],
         allow_flagging="never",
-        theme=gr.themes.Default(radius_size="none", text_size="lg"),
+        theme=gr.themes.Glass(radius_size="none", text_size="lg"),
+        css=".gradio-container {background-color: rgba(255, 255, 255, 0.3); font-family: 'Roboto', sans-serif; color: #996633}"
     )
 
     interface.dev_mode = False
